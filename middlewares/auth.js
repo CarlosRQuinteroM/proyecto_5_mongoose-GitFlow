@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secreta = "Carlos y Juanfe son la leche";
+const secret = "Carlos y Juanfe son la leche";
 
 
 const auth =  async (req, res, next) => {

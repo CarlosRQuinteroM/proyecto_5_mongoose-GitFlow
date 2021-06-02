@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 const jwt = require('jsonwebtoken');
+const admin = require("../middleware/admin");
 
 
 
@@ -15,6 +16,7 @@ router.post('/', async (req,res) => {
         })
     }
 });
+
 router.post('/login',async (req, res) => {
     try{
         const {email,password} = req.body;
@@ -28,7 +30,7 @@ router.post('/login',async (req, res) => {
         });
     }
 });
-
+// admin
 router.get('/', async (req, res) => {
     try {
         res.json(await userController.findAllUsers())
@@ -50,7 +52,7 @@ router.put("/", async(req, res) => {
         });
     }
 });
-//, authenticate
+//, authenticate/admin
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;
