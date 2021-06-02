@@ -1,5 +1,8 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secret = "Carlos y Juanfe son la leche";
+
 
 class Client {
 
@@ -24,7 +27,7 @@ class Client {
             userId: user._id,
             tokenCreationDate: new Date,
         }
-        const token = jwt.sign(payload, secreta)
+        const token = jwt.sign(payload, secret)
         return ({token, user});
     }
 
