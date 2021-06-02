@@ -1,46 +1,52 @@
-const router = require('express').Router();
-const restController = require('../controllers/restController');
+const router = require("express").Router();
+const restController = require("../controllers/restController");
 
-router.get('/rest', async (req, res) => {
-    try {
-        res.json(await restController.findAllRests())
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
-    }
+//GET - Return all Chats in the DB
+
+router.get("/", async (req, res) => {
+  try {
+    res.json(await restController.findAllRooms());
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
 });
 
-router.post('/', async (req,res) => {
-    try {
-        const user = req.body;
-        res.json(await userController.createUser(user))
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        })
-    }
-})
-//, authenticate
-router.put("/", async(req, res) => {
-    try {
-        const body = req.body;
-        res.json( await usersControllers.modifyUser(body));
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        });
-    }
+//POST - Creates a new chat room
+
+router.post("/", async (req, res) => {
+  try {
+    const room = req.body;
+    res.json(await restController.createRest(rest));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
 });
-//, authenticate
-router.delete('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        res.json(await usersControllers.deleteUser(id));
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
-    }
+
+
+router.post("/addReserva", async (req, res) => {
+  try {
+    const data = req.body;
+    res.json(await restController.addReserva(data));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
 });
+
+router.delete("/", async (req, res) => {
+  try {
+    const id = req.body.id;
+    res.json(await restController.deleteBooking(id));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
 module.exports = router;
