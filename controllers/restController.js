@@ -7,25 +7,8 @@ class Local {
         return Rest.find();
     }
 
-    async createRest(room){
-        return Rest.create(room);
-    }
-
-    async joinRest(data){
-        const id = data.id;
-        const miembro = data.miembro;
-        return Rest.findByIdAndUpdate(
-            {_id: id},
-            {$push: {miembros: miembro}});
-    }
-
-    async leaveRest(data){
-        const id = data.id;
-        const miembro = data.miembro;
-        console.log(id,miembro);
-        return Rest.findByIdAndUpdate(
-            {_id: id},
-            {$pull: {miembros: miembro}});
+    async createRest(rest){
+        return Rest.create(rest);
     }
 
     async addReserva(data){
@@ -40,9 +23,7 @@ class Local {
             usuario: usuarioName.name,
             text: data.texto,
             fecha: data.fecha,
-            reportado: data.reportado,
-            entregado: data.entregado,
-            leido: data.leido
+            
         };
 
         console.log(booking);
@@ -51,6 +32,11 @@ class Local {
             {_id: id},
             {$push: {bookings: booking}});
         
+    }
+
+    async deleteBooking(id){
+        
+        return Room.findByIdAndRemove(id);
     }
 
 }
