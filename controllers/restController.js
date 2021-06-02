@@ -11,7 +11,7 @@ class Local {
         return Rest.create(rest);
     }
 
-    async addReserva(data){
+    async addBooking(data){
 
         const id = data.id;
         const userId = data.userId;
@@ -23,6 +23,7 @@ class Local {
             usuario: usuarioName.name,
             text: data.texto,
             fecha: data.fecha,
+            
             
         };
 
