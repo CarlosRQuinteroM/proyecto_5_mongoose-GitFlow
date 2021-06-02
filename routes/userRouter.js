@@ -2,15 +2,6 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 
 
-router.get('/', async (req, res) => {
-    try {
-        res.json(await userController.findAllUsers())
-    }catch (err) {
-        return res.status(500).json({
-            message: err.message
-        });
-    }
-});
 
 router.post('/', async (req,res) => {
     try {
@@ -21,7 +12,31 @@ router.post('/', async (req,res) => {
             message: err.message
         })
     }
-})
+});
+router.post('/login',async (req, res) => {
+    try{
+        const {email,password} = req.body;
+        const jwt = await userController.logMe(email,password);
+        const token = jwt.token;
+        const user = jwt.user;
+        res.json({token,user});
+    } catch (err) {
+        return res.status(401).json({
+            message: err.message
+        });
+    }
+});
+
+router.get('/', async (req, res) => {
+    try {
+        res.json(await userController.findAllUsers())
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 //, authenticate
 router.put("/", async(req, res) => {
     try {
