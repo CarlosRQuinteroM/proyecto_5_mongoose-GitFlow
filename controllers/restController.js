@@ -57,5 +57,5 @@ class Local {
 
 
 
-let chatController = new Local();
-module.exports = chatController;
+let restController = new Local();
+module.exports = restController;
