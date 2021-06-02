@@ -15,9 +15,9 @@ router.get("/", async (req, res) => {
 
 //POST - Creates a new chat room
 
-router.post("/", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
-    const room = req.body;
+    const rest = req.body;
     res.json(await restController.createRest(rest));
   } catch (err) {
     return res.status(500).json({
@@ -27,10 +27,10 @@ router.post("/", async (req, res) => {
 });
 
 
-router.post("/addReserva", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const data = req.body;
-    res.json(await restController.addReserva(data));
+    res.json(await restController.addBooking(data));
   } catch (err) {
     return res.status(500).json({
       message: err.message,
