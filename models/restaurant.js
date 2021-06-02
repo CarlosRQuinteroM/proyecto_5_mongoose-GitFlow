@@ -16,10 +16,6 @@ const restSchema = new Schema({
         type: Array,
         require:true
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
     isActive: {
         type: Boolean,
         default: true
