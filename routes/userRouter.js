@@ -44,7 +44,7 @@ router.get('/',admin, async (req, res) => {
 router.put("/",auth,async(req, res) => {
     try {
         const body = req.body;
-        res.json( await usersControllers.modifyUser(body));
+        res.json( await userControllers.modifyUser(body));
     } catch (error) {
         return res.status(500).json({
             message: error.message
@@ -55,7 +55,7 @@ router.put("/",auth,async(req, res) => {
 router.delete('/:id', auth ,async (req, res) => {
     try {
         const id = req.params.id;
-        res.json(await usersControllers.deleteUser(id));
+        res.json(await userControllers.deleteUser(id));
     }catch (err) {
         return res.status(500).json({
             message: err.message
