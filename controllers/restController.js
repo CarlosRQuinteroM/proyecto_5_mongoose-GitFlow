@@ -34,10 +34,10 @@ class Local {
         
     }
 
-    async deleteBooking(id){
-        
-        return Rest.findByIdAndRemove(id);
-        
+    async deleteBooking(id,idRestaurante){
+        return Rest.findByIdAndUpdate(
+            {_id : idRestaurante},
+            {$pull: {bookings: {idUser: id}}});
     }
 
 }

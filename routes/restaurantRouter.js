@@ -41,7 +41,8 @@ router.post("/add", async (req, res) => {
 router.delete("/", async (req, res) => {
   try {
     const id = req.body.id;
-    res.json(await restController.deleteBooking(id));
+    const idRestaurante = req.body.idRestaurante;
+    res.json(await restController.deleteBooking(id,idRestaurante));
   } catch (err) {
     return res.status(500).json({
       message: err.message,
