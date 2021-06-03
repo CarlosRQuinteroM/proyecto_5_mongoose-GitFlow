@@ -17,7 +17,7 @@ router.get("/",auth, async (req, res) => {
 
 //POST - Creates a new chat Restaurant
 
-router.post("/create",admin, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const rest = req.body;
     res.json(await restController.createRest(rest));
@@ -29,9 +29,9 @@ router.post("/create",admin, async (req, res) => {
 });
 
 
-router.post("/add",auth, async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
-    const data = req.body;
+    const data = req.body.id;
     res.json(await restController.addBooking(data));
   } catch (err) {
     return res.status(500).json({
@@ -40,7 +40,7 @@ router.post("/add",auth, async (req, res) => {
   }
 });
 
-router.delete("/",auth, async (req, res) => {
+router.delete("/", async (req, res) => {
   try {
     const id = req.body.id;
     const idRestaurante = req.body.idRestaurante;
