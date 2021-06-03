@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const restController = require("../controllers/restController");
+const admin = require("../middlewares/admin");
+const auth = require("../middlewares/auth");
 
 //GET - Return all Restaurants in the DB
 
-router.get("/", async (req, res) => {
+router.get("/",auth, async (req, res) => {
   try {
     res.json(await restController.findAllRests());
   } catch (err) {
@@ -15,7 +17,7 @@ router.get("/", async (req, res) => {
 
 //POST - Creates a new chat Restaurant
 
-router.post("/create", async (req, res) => {
+router.post("/create",admin, async (req, res) => {
   try {
     const rest = req.body;
     res.json(await restController.createRest(rest));
@@ -27,7 +29,7 @@ router.post("/create", async (req, res) => {
 });
 
 
-router.post("/add", async (req, res) => {
+router.post("/add",auth, async (req, res) => {
   try {
     const data = req.body;
     res.json(await restController.addBooking(data));
@@ -38,7 +40,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
+router.delete("/",auth, async (req, res) => {
   try {
     const id = req.body.id;
     const idRestaurante = req.body.idRestaurante;

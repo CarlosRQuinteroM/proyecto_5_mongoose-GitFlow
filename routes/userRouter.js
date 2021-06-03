@@ -2,8 +2,7 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 const jwt = require('jsonwebtoken');
 const admin = require("../middlewares/admin");
-
-
+const auth = require("../middlewares/auth");
 
 
 router.post('/', async (req,res) => {
@@ -42,7 +41,7 @@ router.get('/',admin, async (req, res) => {
 });
 
 //, authenticate
-router.put("/", async(req, res) => {
+router.put("/",auth,async(req, res) => {
     try {
         const body = req.body;
         res.json( await usersControllers.modifyUser(body));
@@ -53,7 +52,7 @@ router.put("/", async(req, res) => {
     }
 });
 //, authenticate/admin
-router.delete('/:id', admin ,async (req, res) => {
+router.delete('/:id', auth ,async (req, res) => {
     try {
         const id = req.params.id;
         res.json(await usersControllers.deleteUser(id));

@@ -22,7 +22,8 @@ const userSchema = new Schema({
     },
     phoneNumber: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     country: {
         type: String
