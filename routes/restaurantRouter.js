@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const restController = require("../controllers/restController");
 
-//GET - Return all Chats in the DB
+//GET - Return all Restaurants in the DB
 
 router.get("/", async (req, res) => {
   try {
-    res.json(await restController.findAllRooms());
+    res.json(await restController.findAllRests());
   } catch (err) {
     return res.status(500).json({
       message: err.message,
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//POST - Creates a new chat room
+//POST - Creates a new chat Restaurant
 
 router.post("/create", async (req, res) => {
   try {
