@@ -39,9 +39,9 @@ router.get('/', async (req, res) => {
 //     }
 // });
 //, authenticate/admin
-router.delete('/:id',async (req, res) => {
+router.delete('/',async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.body.id;
         res.json(await bookingController.deleteBooking(id));
     }catch (err) {
         return res.status(500).json({
