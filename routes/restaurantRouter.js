@@ -15,6 +15,17 @@ router.get("/",auth, async (req, res) => {
   }
 });
 
+router.get("/bookings", async (req, res) => {
+  try {
+    const idRestaurante = req.body.id;
+    res.json(await restController.findAllbookings(idRestaurante));
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+});
+
 //POST - Creates a new chat Restaurant
 
 router.post("/create",admin, async (req, res) => {
@@ -28,8 +39,8 @@ router.post("/create",admin, async (req, res) => {
   }
 });
 
-
-router.post("/add",auth, async (req, res) => {
+//,auth
+router.post("/add", async (req, res) => {
   try {
     const data = req.body;
     res.json(await restController.addBooking(data));
@@ -42,7 +53,6 @@ router.post("/add",auth, async (req, res) => {
 
 router.delete("/",auth, async (req, res) => {
   try {
-    const id = req.body.id;
     const idRestaurante = req.body.idRestaurante;
     res.json(await restController.deleteBooking(id,idRestaurante));
   } catch (err) {
