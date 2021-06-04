@@ -17,7 +17,7 @@ const restSchema = new Schema({
         type: Boolean,
         default: true
     },
-    bookings: [bookingSchema.bookingSchema]
+    bookings: []
 });
 
 const Rest = mongoose.model('Rest', restSchema);
