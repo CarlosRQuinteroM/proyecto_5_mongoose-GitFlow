@@ -52,16 +52,16 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.delete("/",auth, async (req, res) => {
-  try {
-    const idRestaurante = req.body.idRestaurante;
-    res.json(await restController.deleteBooking(id,idRestaurante));
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
-});
+// router.delete("/",auth, async (req, res) => {
+//   try {
+//     const idRestaurante = req.body.idRestaurante;
+//     res.json(await restController.deleteBooking(id,idRestaurante));
+//   } catch (err) {
+//     return res.status(500).json({
+//       message: err.message,
+//     });
+//   }
+// });
 
 // router.delete("/", async (req, res) => {
 //   try {
