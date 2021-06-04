@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bookingSchema = require('./booking');
 
 const restSchema = new Schema({
     name: { 
@@ -12,14 +13,11 @@ const restSchema = new Schema({
     city: {
         type: String
     },
-    bookings: {
-        type: Array,
-        require:true
-    },
     isActive: {
         type: Boolean,
         default: true
-    }
+    },
+    bookings: []
 });
 
 const Rest = mongoose.model('Rest', restSchema);
