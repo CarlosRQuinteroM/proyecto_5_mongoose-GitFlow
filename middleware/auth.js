@@ -1,23 +1,15 @@
 const jwt = require("jsonwebtoken");
 const secret = "Carlos y Juanfe son la leche";
 
-const auth = (req, res, next) => {
+module.exports = async (req,res,next)=>{
   try {
-    if (!req.headers.authorization) {
-      throw new Error("Tienes que hacer login para realizar esta acción.");
-    }
-    let token = req.headers.authorization.split(" ")[1];
-    let auth = jwt.verify(token, secret);
-    if (auth.id != req.body.id) {
-      console.log(auth + "entra?");
-      throw new Error("No tienes permiso ");
-    }
-    return next();
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+      const token = req.headers.authorization.split(' ')[1];
+      req.jwt = jwt.verify(token, secret);
+      if (req.jwt.role !== 'Admin' && req.jwt.userId !== req.params.id) throw new Error();
+      next();
+  } catch(error) {
+      res.status(401).json({
+          message: 'Failed authorization.'
+      });
   }
-};
-
-module.exports = auth;
+}
