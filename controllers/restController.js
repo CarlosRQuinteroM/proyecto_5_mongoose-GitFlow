@@ -12,9 +12,6 @@ class Local {
     return Rest.find();
   };
 
-  async findAllbookings(idRestaurante) {
-    return Rest.where({ _id: idRestaurante });
-  };
 
   async modifyRest(data) {
     return Rest.findByIdAndUpdate(
