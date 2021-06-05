@@ -92,7 +92,7 @@ Estas son las tecnologías con las que hemos trabajado en este proyecto:
 
 <a name="id4"></a>
 ## Fase I desarrollo Backend
-<details>
+<!-- <details> -->
 <summary>Click para expandir</summary>
 
 El proyecto consiste en el desarrollo de un sistema de gestión de reservas.
@@ -103,16 +103,39 @@ Los endpoints trabajados son :
 
 <b>User</b>
 
-- Login de usuario
-  http://localhost:3000/user/login  
 - Creación de usuario
   http://localhost:3000/user + datos del usuario mediante el body
+  ````
+  {
+    "name": "ejemplo",
+    "surname": "insertar apellidos",
+    "email": "ejemplo@correo.com",
+    "password": "contraseña",
+    "phoneNumber": 612345678,
+    "country": "insertar País",
+    "city": "insertar Ciudad",
+    "birthday": "YYYY/MM/DD",
+    "isAdmin": true/false,
+    "isActive": true/false
+  }
+  ````
+- Login de usuario
+  http://localhost:3000/user/login + credenciales del usuario por body.
+  ````
+  {
+    "email": "ejemplo@correo.com",
+    "password": "contraseña"
+  }
+  ````
 - Eliminación de usuario
-http://localhost:3000/user/ (+ id del usuario que se quiera eliminar)
+http://localhost:3000/user/ (+ id del usuario que se quiera eliminar) + el token de Admin
 - Busqueda de todos los usuarios
-http://localhost:3000/user
+http://localhost:3000/user + el token de Admin
 
 <br>
+
+---
+
 <b>Restaurantes</b>
 
 - Creación de restaurante
@@ -130,12 +153,43 @@ http://localhost:3000/rest/create + datos del restaurante por body
 - Listado de restaurantes
 http://localhost:3000/rest
 <br>
+---
+
 
 <b>Reservas</b>
 
 - Crear reserva
-- Eliminar reserva
+http://localhost:3000/rest/add + datos de la reserva por body
+````
+{
+    "id":"60b8a3bd1f08426c7cacb336",
+    "userId":"60b66bed4920d7121a06f05b",
+    "comensales":"reserva para 8 personas",
+    "fecha":"2021-05-06",
+    "hora":"19:00",
+    "alergias":"celiaco",
+    "comentarios":"trona de bebe"
+}
+````
+
+- Eliminar reserva 
+http://localhost:3000/rest + datos de la reserva por body
+````
+{
+    "id" :"60b79ecf2b356425940d4edb",
+    "idRestaurante":"60b8a3bd1f08426c7cacb336"
+}
+````
+
+http://localhost:3000/rest
 - Listado de todas las reservas de un restaurante
+http://localhost:3000/rest/bookings + el ID del restaurante por body
+````
+{
+    "id":"60b8a3bd1f08426c7cacb336"
+}
+````
+
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/532d6afed35da38b6876?action=collection%2Fimport)
 
@@ -149,4 +203,4 @@ http://localhost:3000/rest
 ***
 
 
-[UP](#top)
+[🔝](#top)
