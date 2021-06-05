@@ -67,7 +67,7 @@ router.put("/", auth, async (req, res) => {
 router.delete("/:id", auth, async (req, res) => {
   try {
     const id = req.params.id;
-    res.json(await userController.deleteUser(id));
+    res.json(await Controller.deleteUser(id));
   } catch (err) {
     return res.status(500).json({
       message: err.message,

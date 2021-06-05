@@ -16,7 +16,7 @@ router.post("/", auth, async (req, res) => {
 });
 
 // admin
-router.get("/", admin, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     res.json(await bookingController.findAllBookings());
   } catch (err) {
@@ -25,20 +25,19 @@ router.get("/", admin, async (req, res) => {
     });
   }
 });
+router.get("/bookings",admin, async (req, res) => {
+    try {
+      const idRestaurante = req.body.id;
+      res.json(await restController.findAllbookings(idRestaurante));
+    } catch (err) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+  });
 
-// //, authenticate
-// router.put("/",auth,async(req, res) => {
-//     try {
-//         const body = req.body;
-//         res.json( await userController.modifyUser(body));
-//     } catch (error) {
-//         return res.status(500).json({
-//             message: error.message
-//         });
-//     }
-// });
 //, authenticate/admin
-router.delete("/", auth, async (req, res) => {
+router.delete("/", admin, async (req, res) => {
   try {
     const id = req.body.id;
     res.json(await bookingController.deleteBooking(id));
@@ -48,5 +47,18 @@ router.delete("/", auth, async (req, res) => {
     });
   }
 });
+//,auth
+
+  router.delete("/",auth, async (req, res) => {
+    try {
+      const id = req.body.id;
+      const idRestaurante = req.body.idRestaurante;
+      res.json(await restController.deleteBooking(id,idRestaurante));
+    } catch (err) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+  });
 
 module.exports = router;
