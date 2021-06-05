@@ -1,63 +1,76 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const validator = require('validator');
+const Mongoose = require("mongoose");
+const validator = require("validator");
 
-const userSchema = new Schema({
-    name: { 
-        type: String,
-        required: true
-    },
-    surname: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        validate: {validator: validator.isEmail, msg: 'Invalid email'}
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
-        type: String,
-        required: true,
-        unique: true,
-        validate: {validator: validator.isMobilePhone, msg: 'Invalid mobile phone number.'}
-    },
-    country: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    birthday: {
-        type: Date,
-        required: true
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isActive: {
-        type: Boolean,
-        default: true
+class UserRole extends Mongoose.SchemaType {
+  constructor(key, options) {
+    super(key, options, 'UserRole');
+  }
+  cast(val) {
+    let _val = String(val);
+    if (_val != 'Customer' && _val != 'Admin') {
+      throw new Error('UserRole: ' + val +
+        ' does not match a valid user role.');
     }
+    return _val;
+  }
+}
+Mongoose.Schema.Types.UserRole = UserRole;
+
+const userSchema = new Mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  surname: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    validate: { validator: validator.isEmail, msg: "Invalid email" },
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: validator.isMobilePhone,
+      msg: "Invalid mobile phone number.",
+    },
+  },
+  country: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  birthday: {
+    type: Date,
+    required: true,
+  },
+  role: {
+    type: Mongoose.Schema.Types.UserRole,
+    default: 'Customer'
+   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
-const toJSONConfig = {
-    transform: (doc,ret,opt) => {
-           delete ret['password']
-           return ret
-    }
-};
+userSchema.set('toJSON', {
+  transform: function(doc,ret,opt) {
+      delete ret['password'];
+      return ret;
+  }
+});
 
-
-userSchema.set('toJSON', toJSONConfig);
-
-
-const User = mongoose.model('User', userSchema);
+const User = Mongoose.model("User", userSchema);
 module.exports = User;
