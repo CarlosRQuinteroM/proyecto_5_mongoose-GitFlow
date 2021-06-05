@@ -20,34 +20,39 @@ class Client {
     }
 
     const payload = {
-      userId: user._id,
+      userId: user.id,
+      role: user.role,
       tokenCreationDate: new Date(),
     };
     const token = jwt.sign(payload, secret);
     return { token, user };
-  }
+  };
+
+
+    async getByEmail(email) {
+        return await User.find({email});
+    }
 
   async findAllUsers() {
     return User.find();
-  }
+  };
 
   async modifyUser(body) {
     return User.findByIdAndUpdate(
-      //Datos que cambiamos
+      //Data Changes
       {
-        isAdmin: body.isAdmin,
         country: body.country,
         city: body.city,
       },
-      //Donde
+      //Were
       { _id: body.id }
     );
-  }
+  };
 
   async deleteUser(id) {
     return User.findByIdAndRemove({ _id: id });
-  }
-}
+  };
+};
 
 let userController = new Client();
 module.exports = userController;
