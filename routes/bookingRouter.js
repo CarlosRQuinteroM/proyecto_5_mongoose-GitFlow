@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const admin = require("../middleware/admin.js");
 const auth = require("../middleware/auth");
 
+// POST create Booking *
 router.post("/", auth, async (req, res) => {
   try {
     const booking = req.body;
@@ -15,9 +16,10 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// admin
-router.get("/", auth, async (req, res) => {
+// auth GET  find all Bookings 
+router.get("/", admin, async (req, res) => {
   try {
+
     res.json(await bookingController.findAllBookings());
   } catch (err) {
     return res.status(500).json({
@@ -25,6 +27,8 @@ router.get("/", auth, async (req, res) => {
     });
   }
 });
+
+
 router.get("/bookings",admin, async (req, res) => {
     try {
       const idRestaurante = req.body.id;
