@@ -1,63 +1,64 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const validator = require('validator');
+const validator = require("validator");
 
 const userSchema = new Schema({
-    name: { 
-        type: String,
-        required: true
+  name: {
+    type: String,
+    required: true,
+  },
+  surname: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    validate: { validator: validator.isEmail, msg: "Invalid email" },
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: validator.isMobilePhone,
+      msg: "Invalid mobile phone number.",
     },
-    surname: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        validate: {validator: validator.isEmail, msg: 'Invalid email'}
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
-        type: String,
-        required: true,
-        unique: true,
-        validate: {validator: validator.isMobilePhone, msg: 'Invalid mobile phone number.'}
-    },
-    country: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    birthday: {
-        type: Date,
-        required: true
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isActive: {
-        type: Boolean,
-        default: true
-    }
+  },
+  country: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  birthday: {
+    type: Date,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const toJSONConfig = {
-    transform: (doc,ret,opt) => {
-           delete ret['password']
-           return ret
-    }
+  transform: (doc, ret, opt) => {
+    delete ret["password"];
+    return ret;
+  },
 };
 
+userSchema.set("toJSON", toJSONConfig);
 
-userSchema.set('toJSON', toJSONConfig);
-
-
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;

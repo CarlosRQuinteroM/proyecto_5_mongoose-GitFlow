@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const restController = require("../controllers/restController");
-const admin = require("../middlewares/admin");
-const auth = require("../middlewares/auth");
+const admin = require("../middleware/admin.js");
+const auth = require("../middleware/auth");
 
 //GET - Return all Restaurants in the DB
-
 
 router.get("/", async (req, res) => {
   try {
