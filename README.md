@@ -96,7 +96,7 @@ These are the technologies with which we have worked in this project:
 
 The project consists of the development of a reserve management system.
 
-Trabajamos con una base de datos interna que esta alojada en <b>MongoDB Atlas</b> and with its own API.
+We work with an internal database that is hosted in <b>MongoDB Atlas</b> and with its own API.
 
 The endpoints worked are:
 
@@ -178,28 +178,23 @@ http://localhost:3000/rest +  Data booking by body
     "id" :"60b79ecf2b356425940d4edb",
     "idRestaurante":"60b8a3bd1f08426c7cacb336"
 }
-````
+```
 
 http://localhost:3000/rest
 - List of all restaurant reservations
-http://localhost:3000/rest/bookings + the restaurant ID by body
-````
+http://localhost:3000/rest/bookings + el ID del restaurante por body
+
+```
 {
     "id":"60b8a3bd1f08426c7cacb336"
 }
-````
-
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/532d6afed35da38b6876?action=collection%2Fimport)
-
-<a name="id5"></a>
-
-
-
 </details>
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/532d6afed35da38b6876?action=collection%2Fimport)
+<a name="id5"></a>
+
 <a name="id6"></a>
+
+
 ***
-
-
-[🔝](#top)
+[:top:](#top)
