@@ -8,9 +8,9 @@
 
 💻 [Technologys](#id2)
 
-:clipboard: [Instruccion](#id3)
+:clipboard: [Instructions](#id3)
 
-⚙️ [Fase I backend development](#id4)
+⚙️ [Phase I backend development](#id4)
 
 
 
@@ -25,11 +25,11 @@ This is the backend for a restaurant reservation application.
 This project is part of the Full Stack Developer Bootcamp taught by [GeeksHubs Academy](https://bootcamp.geekshubsacademy.com/).
 
 ---
-**Fase I**
-**Start Date:** 01/ junio /2021
-**Deadline:** 07 / junio / 2021
+**Phase I**
+**Start Date:** 01/ jun /2021
+**Deadline:** 07 / jun / 2021
 
-**Colaboradores:**
+**Collaborators:**
 * [Carlos Quintero Moreno](https://github.com/CarlosRQuinteroM)
 * [Juan Felipe Porras Gallego](https://github.com/juanfegallego)
 
