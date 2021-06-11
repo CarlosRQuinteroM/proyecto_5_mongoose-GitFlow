@@ -7,7 +7,7 @@ const restSchema = new Schema({
     type: String,
     required: true,
   },
-  country: {
+  addres:{
     type: String,
     required: true,
   },
