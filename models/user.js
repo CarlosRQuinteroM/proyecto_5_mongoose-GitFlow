@@ -20,10 +20,12 @@ const userSchema = new Mongoose.Schema({
   name: {
     type: String,
     required: true,
+    lowercase:true,
   },
   surname: {
     type: String,
     required: true,
+    lowercase:true,
   },
   email: {
     type: String,
@@ -47,9 +49,11 @@ const userSchema = new Mongoose.Schema({
   },
   country: {
     type: String,
+    
   },
   city: {
     type: String,
+    
   },
   birthday: {
     type: Date,
