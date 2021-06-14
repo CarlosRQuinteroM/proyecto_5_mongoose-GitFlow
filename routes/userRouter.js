@@ -39,17 +39,18 @@ router.get("/", admin, async (req, res) => {
 });
 
 // admin
-router.get('/email',admin,async (req, res) => {   
-    try{
-        let data;
-        if (req.body.email != undefined) data = await userController.getByEmail(req.body.email);
-        else data = await userController.search(req.body);
-        res.json(data);
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        });
-    }
+router.get("/email", admin, async (req, res) => {
+  try {
+    let data;
+    if (req.body.email != undefined)
+      data = await userController.getByEmail(req.body.email);
+    else data = await userController.search(req.body);
+    res.json(data);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
 });
 
 //, authenticate
