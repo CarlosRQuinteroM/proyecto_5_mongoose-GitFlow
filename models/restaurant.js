@@ -19,6 +19,9 @@ const restSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  imgRest:{
+    type:Array,
+  },
   bookings: [],
 });
 
