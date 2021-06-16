@@ -19,7 +19,10 @@ class booking {
     return Booking.find();
   };
 
- 
+  async findAllBookings(id) {
+    return Booking.find({ _id: id });
+  }; 
+  
   async deleteBooking(id) {
     return Booking.findOneAndRemove({ _id: id });
   };
