@@ -67,6 +67,9 @@ const userSchema = new Mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  imgUser:{
+    type: String,
+  }
 });
 
 userSchema.set('toJSON', {
