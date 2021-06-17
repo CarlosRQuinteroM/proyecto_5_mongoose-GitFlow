@@ -20,9 +20,9 @@ class booking {
   };
 
   async findAllBookings(id) {
-    return Booking.find({ _id: id });
+    return Booking.find({ idUser : id  });
   }; 
-  
+
   async deleteBooking(id) {
     return Booking.findOneAndRemove({ _id: id });
   };
