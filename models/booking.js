@@ -24,6 +24,10 @@ const bookingSchema = new Schema({
     type: Date,
     required: true,
   },
+  hora: {
+    type: Date,
+    required: true,
+  },
   alergias: {
     type: String,
     required: false,
