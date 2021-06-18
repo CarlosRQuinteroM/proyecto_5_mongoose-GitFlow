@@ -6,28 +6,35 @@ const restSchema = new Schema({
   name: {
     type: String,
     required: true,
+    lowercase:true,
   },
   addres:{
     type: String,
     required: true,
+    lowercase:true,
   },
   typeFood:{
     type:String,
     required:true,
+    lowercase:true,
   },
   city: {
     type: String,
     required: true,
+    lowercase:true,
   },
   isActive: {
     type: Boolean,
     default: true,
+    lowercase:true,
   },
   imgRest:{
     type:Array,
+    lowercase:true,
   },
   telephone:{
     type:String,
+    lowercase:true,
   },
   bookings: [],
 });
