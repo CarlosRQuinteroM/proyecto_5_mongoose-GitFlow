@@ -40,7 +40,7 @@ router.get("/bookings",admin, async (req, res) => {
     }
   });
   
-  router.get("/userbooking/:idUser", async(req, res) => {
+  router.get("/userbooking/:idUser",auth,async(req, res) => {
     try {
         const id = req.params.idUser;
         res.json( await bookingController.findAllBookings(id));
