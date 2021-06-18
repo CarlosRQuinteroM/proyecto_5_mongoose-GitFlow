@@ -22,6 +22,9 @@ const restSchema = new Schema({
   imgRest:{
     type:Array,
   },
+  telephone:{
+    type:String,
+  },
   bookings: [],
 });
 
