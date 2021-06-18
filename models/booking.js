@@ -14,6 +14,7 @@ const bookingSchema = new Schema({
   },
   usuario: {
     type: String,
+    ref: "User",
     required: true,
   },
   partySize: {

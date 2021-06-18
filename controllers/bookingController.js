@@ -20,7 +20,10 @@ class booking {
   };
 
   async findAllBookings(id) {
-    let res = await Booking.find({ idUser : id  }).populate("restaurant");
+    let res = await Booking.find({ idUser : id  })
+    .populate("restaurant","imgRest")
+    .populate("idUser","name")
+    .populate("restaurant","name")
     var prueba = res.length
    if (prueba === 0){
      return (
@@ -28,6 +31,8 @@ class booking {
      )
    }else {return res}
  }; 
+
+
   
   async deleteBooking(id) {
     return Booking.findOneAndRemove({ _id: id });

@@ -30,7 +30,8 @@ const restSchema = new Schema({
     lowercase:true,
   },
   imgRest:{
-    type:Array,
+    type:Schema.Types.Array,
+    ref:"img",
     lowercase:true,
   },
   telephone:{

@@ -1,7 +1,13 @@
-const Mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const validator = require("validator");
+const userngSchema = require("./booking");
 
-class UserRole extends Mongoose.SchemaType {
+
+
+
+
+class UserRole extends mongoose.SchemaType {
   constructor(key, options) {
     super(key, options, 'UserRole');
   }
@@ -14,11 +20,12 @@ class UserRole extends Mongoose.SchemaType {
     return _val;
   }
 }
-Mongoose.Schema.Types.UserRole = UserRole;
+mongoose.Schema.Types.UserRole = UserRole;
 
-const userSchema = new Mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
-    type: String,
+    type: Schema.Types.String,
+    ref: "nameUser",
     required: true,
     lowercase:true,
   },
@@ -60,7 +67,7 @@ const userSchema = new Mongoose.Schema({
     required: true,
   },
   role: {
-    type: Mongoose.Schema.Types.UserRole,
+    type: mongoose.Schema.Types.UserRole,
     default: 'Customer'
    },
   isActive: {
@@ -79,5 +86,5 @@ userSchema.set('toJSON', {
   }
 });
 
-const User = Mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
