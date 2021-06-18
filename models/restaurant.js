@@ -4,7 +4,8 @@ const bookingSchema = require("./booking");
 
 const restSchema = new Schema({
   name: {
-    type: String,
+    type: Schema.Types.String,
+    ref: "Rest",
     required: true,
     lowercase:true,
   },
