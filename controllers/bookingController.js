@@ -20,8 +20,15 @@ class booking {
   };
 
   async findAllBookings(id) {
-    return Booking.find({ idUser : id  });
-  }; 
+    let res = await Booking.find({ idUser: id }).populate("restaurant");
+    var prueba = res.length
+    console.log(prueba)
+    if (prueba === 0) {
+      return (
+        "vacio"
+      )
+    } else { return res }
+  };
 
   async deleteBooking(id) {
     return Booking.findOneAndRemove({ _id: id });
