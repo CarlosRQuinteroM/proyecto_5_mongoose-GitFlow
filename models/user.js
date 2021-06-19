@@ -45,6 +45,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imgUser:{
+    type:String,
+    ref:"imgUser",
+    lowercase:true
+  },
   phoneNumber: {
     type: String,
     required: true,

@@ -21,9 +21,8 @@ class booking {
 
   async findAllBookings(id) {
     let res = await Booking.find({ idUser : id  })
-    .populate("restaurant","imgRest")
-    .populate("idUser","name")
-    .populate("restaurant","name")
+    .populate("idUser","name , imgUser")
+    .populate("restaurant","name , imgRest")
     var prueba = res.length
    if (prueba === 0){
      return (
